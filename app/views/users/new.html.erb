@@ -12,10 +12,11 @@
       </ul>
     </div>
   <% end %>
-  
+
   <%= f.label :name %>
   <%= f.text_field :name %>
 
+  <%= image_tag(@user.profile.url) if @user.profile && @user.profile.url %>
   <%= f.label :profile %>
   <%= f.file_field :profile %>
 
