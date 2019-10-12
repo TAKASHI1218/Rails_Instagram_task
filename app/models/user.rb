@@ -1,4 +1,5 @@
 class User < ApplicationRecord
+  has_many :books
   mount_uploader :profile, ImageUploader
   before_validation { email.downcase! }
   validates :email, uniqueness: true
