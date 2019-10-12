@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
   # root to: "pictures#index"
-
-  resources :users  
+  resources :sessions, only: [:new, :create, :destroy]
+  resources :users
   resources :pictures do
     collection do
       post :confirm
