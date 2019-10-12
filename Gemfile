@@ -10,6 +10,7 @@ gem 'binding_of_caller'
 gem 'carrierwave'
 gem 'mini_magick'
 gem 'bcrypt', '3.1.11'
+gem 'faker'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 5.2.3'
