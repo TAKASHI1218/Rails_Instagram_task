@@ -6,6 +6,7 @@ class PicturesController < ApplicationController
   end
 
   def show
+    @favorite = current_user.favorites.find_by(picture_id: @picture.id)
   end
 
   def new
@@ -32,7 +33,7 @@ class PicturesController < ApplicationController
       render :new
     else
       if @picture.save
-        ContactMailer.contact_mail(@picture).deliver        
+        ContactMailer.contact_mail(@picture).deliver
         redirect_to pictures_path
       else
         render :new

@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
   # root to: "pictures#index"
+  resources :favorites, only: [:create, :destroy]
   resources :sessions, only: [:new, :create, :destroy]
   resources :users
   resources :pictures do
