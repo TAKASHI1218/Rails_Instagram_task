@@ -9,4 +9,8 @@ class FavoritesController < ApplicationController
     favorite = current_user.favorites.find_by(id: params[:id]).destroy
     redirect_to pictures_url, notice: "#{favorite.picture.user.name}さん投稿をお気に入りから削除しました。"
   end
+
+  def show
+    @favorite = current_user.favorite_pictures
+  end
 end
