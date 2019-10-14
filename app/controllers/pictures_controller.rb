@@ -58,9 +58,6 @@ class PicturesController < ApplicationController
       end
     end
 
-
-
-
   def destroy
     if @picture.user_id == current_user.id
       @picture.destroy
@@ -70,8 +67,6 @@ class PicturesController < ApplicationController
        flash[:again] = '権限がありません。'
     end
   end
-
-
 
   private
   def set_picture

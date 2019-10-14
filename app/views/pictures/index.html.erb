@@ -4,9 +4,6 @@
 
   <h2 div class="btn-group newpicture">
     <button type="button" class="btn btn-info"><%= link_to '投稿する', new_picture_path %></button></h2>
-
-
-
 <table>
   <thead class="container">
     <tr class="row">
@@ -28,12 +25,21 @@
           <div class="btn-group" role="group">
             <button type="button" class="btn btn-default">
               <%= link_to '詳細', picture %></button>
+
+          <% if picture.user_id == current_user.id %>
           <div class="btn-group" role="group">
             <button type="button" class="btn btn-default">
               <%= link_to '編集', edit_picture_path(picture) %></button>
+          <% else %>
+          <% end %>
+
+          <% if picture.user_id == current_user.id %>
           <div class="btn-group" role="group">
             <button type="button" class="btn btn-default">
               <%= link_to '削除', picture, method: :delete, data: { confirm: 'Are you sure?' } %></button>
+          <% else %>
+          <% end %>
+          
         </td>
       </tr>
     <% end %>
