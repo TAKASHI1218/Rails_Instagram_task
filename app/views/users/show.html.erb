@@ -1,5 +1,10 @@
 <h1><%= @user.name %>のページ</h1>
+
+<% if current_user %>
+<% else %>
 <h2>★投稿一覧に行くにはログインしてください★</h2>
+<% end %>
+
 
 <p>プロフィール:
 <%= image_tag(@user.profile.url) if @user.profile && @user.profile.url %>
