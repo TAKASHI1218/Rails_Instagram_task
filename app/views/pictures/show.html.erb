@@ -10,6 +10,7 @@
   <%= @picture.content %>
 </p>
 
+
 <% unless @picture.user_id == current_user.id %>
   <% if @favorite.present? %>
     <%= link_to 'お気に入り解除する', favorite_path(id: @favorite.id), method: :delete, class: 'btn btn-danger' %>
@@ -18,5 +19,9 @@
   <% end %>
 <% end %>
 
-<%= link_to 'Edit', edit_picture_path(@picture) %> |
-<%= link_to 'Back', pictures_path %>
+
+  <button type="button" class="btn btn-default">
+    <%= link_to 'Edit', edit_picture_path(@picture) %></button>
+
+  <button type="button" class="btn btn-default">
+    <%= link_to 'Back', pictures_path %></button>

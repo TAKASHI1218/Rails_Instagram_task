@@ -42,22 +42,37 @@ class PicturesController < ApplicationController
   end
 
   def update
-    respond_to do |format|
-      if @picture.update(picture_params)
-        format.html { redirect_to @picture, notice: 'Picture was successfully updated.' }
-        format.json { render :show, status: :ok, location: @picture }
-      else
-        format.html { render :edit }
-        format.json { render json: @picture.errors, status: :unprocessable_entity }
+    @user = User.find(params[:id])
+    if current_user == @user
+
+      respond_to do |format|
+        if @picture.update(picture_params)
+          format.html { redirect_to @picture, notice: 'Picture was successfully updated.' }
+          format.json { render :show, status: :ok, location: @picture }
+        else
+          format.html { render :edit }
+          format.json { render json: @picture.errors, status: :unprocessable_entity }
+        end
       end
-    end
-  end
+   else
+     flash[:again] = 'idが一致しません。'
+     redirect_to  pictures_path
+   end
+ end
+
+
+
 
   def destroy
-    @picture.destroy
-    respond_to do |format|
-      format.html { redirect_to pictures_url, notice: 'Picture was successfully destroyed.' }
-      format.json { head :no_content }
+    if user && user.authenticate(params[:session][:password])
+      @picture.destroy
+      respond_to do |format|
+        format.html { redirect_to pictures_url, notice: 'Picture was successfully destroyed.' }
+        format.json { head :no_content }
+      end
+    else
+      flash[:again] = 'idが一致しません'
+      redirect_to  pictures_path
     end
   end
 

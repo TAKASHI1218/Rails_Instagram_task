@@ -6,9 +6,11 @@
 
 <p>メールアドレス: <%= @user.email %></p>
 
-<%= link_to 'Index', pictures_path %>
+<button type="button" class="btn btn-default">
+<%= link_to 'Index', pictures_path %></button>
 
+<button type="button" class="btn btn-default">
+<%= link_to 'Edit', edit_user_path(@user) %></button>
 
-<%= link_to 'Edit', edit_user_path(@user) %>
-
-<%= link_to 'Your favorite', favorite_path(:id) %>
+<button type="button" class="btn btn-default">
+<%= link_to 'Your favorite', favorite_path(:id) %></button>
