@@ -24,6 +24,11 @@ class PicturesController < ApplicationController
   end
 
   def edit
+    if @picture.user_id == current_user.id
+    else
+      redirect_to pictures_path
+       flash[:again] = '権限がありません。'
+    end
   end
 
   def create
@@ -42,9 +47,6 @@ class PicturesController < ApplicationController
   end
 
   def update
-    @user = User.find(params[:id])
-    if current_user == @user
-
       respond_to do |format|
         if @picture.update(picture_params)
           format.html { redirect_to @picture, notice: 'Picture was successfully updated.' }
@@ -54,27 +56,22 @@ class PicturesController < ApplicationController
           format.json { render json: @picture.errors, status: :unprocessable_entity }
         end
       end
-   else
-     flash[:again] = 'idが一致しません。'
-     redirect_to  pictures_path
-   end
- end
+    end
 
 
 
 
   def destroy
-    if user && user.authenticate(params[:session][:password])
+    if @picture.user_id == current_user.id
       @picture.destroy
-      respond_to do |format|
-        format.html { redirect_to pictures_url, notice: 'Picture was successfully destroyed.' }
-        format.json { head :no_content }
-      end
+      redirect_to pictures_path
     else
-      flash[:again] = 'idが一致しません'
-      redirect_to  pictures_path
+      redirect_to pictures_path
+       flash[:again] = '権限がありません。'
     end
   end
+
+
 
   private
   def set_picture
