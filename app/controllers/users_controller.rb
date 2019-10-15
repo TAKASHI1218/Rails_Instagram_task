@@ -18,9 +18,12 @@ class UsersController < ApplicationController
 
   def edit
     @user = User.find(params[:id])
-    if @user == current_user.id
-   end
- end
+    if @user == current_user
+    else
+      flash[:again] = 'idが一致しません。'
+      redirect_to user_path(@user.id)
+    end
+  end
 
   def update
     @user = User.find(params[:id])
