@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
   root to: "users#new"
+  resources :users
   resources :favorites, only: [:create, :destroy, :show]
   resources :sessions
   resources :pictures do
@@ -12,4 +13,4 @@ end
 
 
 # , only: [:new, :create, :destroy]
-# resources :users
+#
