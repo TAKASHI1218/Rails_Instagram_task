@@ -3,6 +3,8 @@ ja:
     models:
       picture: 画像
       user: ユーザー
+      favorite: お気に入り
+
     attributes:
       picture:
         image: 写真
@@ -15,3 +17,6 @@ ja:
         password: パスワード
         password_confirmation: 確認用パスワード
         remember_me: ログインを記憶
+      favorite:
+        user_id: ユーザーid
+        picture_id: 画像id
